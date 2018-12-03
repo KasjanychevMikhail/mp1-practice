@@ -61,3 +61,39 @@ void counting(int a[], int n)
             a[idx++] = i;
     }
 }
+void quicksplit(int a[], int *i, int *j, int p)
+{
+    do {
+        while (a[*i] < p) *i++;
+        while (a[*j] > p) *j--;
+        if (*i <= *j)
+        {
+            int tmp = a[*i];
+            a[*i] = a[*j];
+            a[*j] = tmp;
+        }
+    } while (*i < *j);
+}
+void quicksort(int a[], int n1, int n2)
+{
+    int m = (n1 + n2) / 2;
+    int i = n1, j = n2;
+    quicksplit(a, &i, &j, m);
+    if (i > n1)
+        quicksort(a, n1, i);
+    if (j < n2)
+        quicksort(a, j, n2);
+}
+void merge(int a[], int l, int m, int r)
+{
+
+}
+void mergesort(int a[], int l, int r)
+{
+    int m;
+    if (l >= r) return;
+    m = (l + r) / 2;
+    mergesort(a, l, m);
+    mergesort(a, m + 1, r);
+    merge(a, l, m, r);
+}
