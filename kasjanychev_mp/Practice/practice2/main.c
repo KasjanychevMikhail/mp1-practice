@@ -4,7 +4,7 @@
 void main()
 {
 	int n, l, y = 0;
-	int a[10], b[10], x[10];
+	int a[10], b[10], x[10], z[10];
 	int i, m, j;
 	int j, k, z = 0;
 	printf("Vvedite dlinu zagadivaemogo chisla");
@@ -23,6 +23,16 @@ void main()
 	{
         printf("Vvedite predpolozhitelnoe chislo");
 	    scanf("%d", &y);
+        for (i = 1; i < n + 1; i++)
+            z[i] = y / i;
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                if (z[i] == z[j]) {
+                    printf("Chislo soderzhit povtoryaushiesya cifri");
+                    return;
+                }
+            }
+        }
 	    m = 10 * n;
 	    for (i = 0; i < n; i++)
 	    {
