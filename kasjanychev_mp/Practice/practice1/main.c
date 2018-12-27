@@ -1,7 +1,7 @@
 #include <stdio.h>
 void main()
 {
-	double dsp, dvp, derevo, m, h, w, d, zs, bok, kr, dv, pol;
+	double dsp, dvp, derevo, m, h, w, d, zs, bok, kr, dv, pol, vk, sb;
 	printf("Vvedite plotnost DSP, kg/m^3");
 	scanf("%lf", &dsp);
 	printf("Vvedite plotnost DVP, kg/m^3");
@@ -35,8 +35,8 @@ void main()
 	zs = h * w * 0.005 * dvp;
 	bok = h * d * 0.015 * dsp;
 	kr = w * d * 0.015 * dsp;
-	dv = h * (w / 2) * 0.01 * derevo;
-	pol = w * d * 0.015 * dsp;
+	dv = h * w * 0.01 * derevo;
+	pol = (h - 2 * 0.015) / (0.4 + 0.015) * (w - 2 * 0.015) * (d - 0.005) * dsp;
 	m = zs + 2 * bok + 2 * kr + 2 * dv + 4 * pol;
 	printf("Massa shkafa=%lf", m);
 	return;
