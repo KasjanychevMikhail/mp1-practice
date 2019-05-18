@@ -10,4 +10,5 @@ public:
 	~Date();
 	void Print() const;
 	bool operator==(const Date dat) const;
+	Date& operator=(const Date& temp);
 };

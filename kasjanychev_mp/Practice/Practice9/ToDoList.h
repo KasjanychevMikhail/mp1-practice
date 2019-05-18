@@ -9,4 +9,7 @@ private:
 public:
 	ToDoList();
 	ToDoList(int n);
+	~ToDoList();
+	void Read(char* adr);
+	void Vivod(Date dat);
 };

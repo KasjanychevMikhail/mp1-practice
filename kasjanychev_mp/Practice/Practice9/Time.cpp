@@ -25,3 +25,11 @@ void Time::Print() const
 {
 	cout << h << ":" << min;
 }
+
+Time& Time::operator=(const Time& temp)
+{
+	if (this == &temp)
+		return *this;
+	h = temp.h;
+	min = temp.min;
+}

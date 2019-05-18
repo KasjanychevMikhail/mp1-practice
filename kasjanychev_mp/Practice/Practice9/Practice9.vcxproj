@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="ToDoList.cpp" />

@@ -38,6 +38,14 @@ void Type1::Print()const
 {
 	cout << des;
 }
+Type1& Type1::operator= (const Type1& temp)
+{
+	if (this == &temp)
+		return *this;
+	date = temp.date;
+	des = temp.des;
+	return *this;
+}
 Type2::Type2()
 {
 	des = "";
@@ -63,4 +71,14 @@ void Type2::Print()const
 {
 	time.Print();
 	cout << des << " durations: " << dur;
+}
+Type2& Type2::operator= (const Type2& temp)
+{
+	if (this == &temp)
+		return *this;
+	date = temp.date;
+	des = temp.des;
+	time = temp.time;
+	dur = temp.dur;
+	return *this;
 }

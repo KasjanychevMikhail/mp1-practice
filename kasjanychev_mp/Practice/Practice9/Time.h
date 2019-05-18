@@ -10,4 +10,5 @@ public:
 	Time(const Time& time);
 	~Time();
 	void Print() const;
+	Time& operator=(const Time& temp);
 };

@@ -36,3 +36,11 @@ bool Date::operator==(const Date dat) const
 		return true;
 	return false;
 }
+Date& Date::operator=(const Date& temp)
+{
+	if (this == &temp)
+		return *this;
+	d = temp.d;
+	m = temp.m;
+	y = temp.y;
+}
