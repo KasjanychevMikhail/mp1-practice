@@ -11,7 +11,7 @@ private:
 	int max;
 public:
 	Container2();
-	Container2(int _size, int _max);
+	Container2(int _size);
 	Container2(const Container2& temp);
 	~Container2();
 
@@ -32,15 +32,13 @@ template <typename T>
 Container2<T>::Container2()
 {
 	size = 0;
-	max = 10;
 	arr = new T*[max];
 }
 
 template <typename T>
-Container2<T>::Container2(int _size, int _max)
+Container2<T>::Container2(int _size)
 {
 	size = _size;
-	max = _max;
 	arr = new T*[max];
 	for (int i = 0; i < size; i++)
 		arr[i] = new T;
