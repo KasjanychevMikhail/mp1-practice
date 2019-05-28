@@ -16,12 +16,13 @@ public:
 	Vectors operator+ (double temp) const;
 	Vectors operator- (double temp) const;
 	Vectors operator* (double temp) const;
-	Vectors operator= (const Vectors & temp);
-	double* operator[] (int i) const;
+	const Vectors& operator= (const Vectors & temp);
+	const double& operator[] (int i) const;
+    double& operator[] (int i);
 	double Lenght() const;
-	Vectors operator+= (const Vectors & temp);
-	Vectors operator-= (const Vectors & temp);
-	Vectors operator*= (double temp);
+	Vectors& operator+= (const Vectors & temp);
+	Vectors& operator-= (const Vectors & temp);
+	Vectors& operator*= (double temp);
 	void PrVec() const;
 	void ScVec();
 };

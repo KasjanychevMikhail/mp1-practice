@@ -17,14 +17,7 @@ void main()
     {
         cout << er;
     }
-    try
-    {
-        a.PrVec();
-    }
-    catch (char* er)
-    {
-        cout << er;
-    }
+    a.PrVec();
 
     cout << "Vvedite kol-vo koordinat ";
     cin >> n;
@@ -38,14 +31,7 @@ void main()
     {
         cout << er;
     }
-    try
-    {
-        b.PrVec();
-    }
-    catch (char* er)
-    {
-        cout << er;
-    }
+    b.PrVec();
 
     Vectors c;
     cout << "c = a + b";
@@ -57,14 +43,7 @@ void main()
 	{
 		cout << er;
 	}
-    try
-    {
-        c.PrVec();
-    }
-    catch (char* er)
-    {
-        cout << er;
-    }
+    c.PrVec();
     cout << "c = a - b";
 	try
 	{
@@ -74,44 +53,16 @@ void main()
 	{
 		cout << er;
 	}
-    try
-    {
-        c.PrVec();
-    }
-    catch (char* er)
-    {
-        cout << er;
-    }
+    c.PrVec();
     cout << "c += 5";
     c = c + 5;
-    try
-    {
-        c.PrVec();
-    }
-    catch (char* er)
-    {
-        cout << er;
-    }
+    c.PrVec();
     cout << "c -= 3";
     c = c - 3;
-    try
-    {
-        c.PrVec();
-    }
-    catch (char* er)
-    {
-        cout << er;
-    }
+    c.PrVec();
     cout << "c *= 1.5";
     c *= 1.5;
-    try
-    {
-        c.PrVec();
-    }
-    catch (char* er)
-    {
-        cout << er;
-    }
+    c.PrVec();
 
     double x;
     try
@@ -136,7 +87,7 @@ void main()
 
     try
     {
-        cout << "c[0] = " << *c[0];
+        cout << "c[0] = " << c[0];
     }
     catch (char* er)
     {
@@ -145,8 +96,8 @@ void main()
 
     try
     {
-        *c[0] = 10;
-        cout << "c[0] = 10 = " << *c[0];
+        c[0] = 10;
+        cout << "c[0] = 10 = " << c[0];
     }
 	catch (char* er)
 	{

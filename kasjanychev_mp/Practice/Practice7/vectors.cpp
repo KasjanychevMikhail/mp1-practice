@@ -79,7 +79,7 @@ Vectors Vectors::operator* (double temp) const
 		rez.arr[i] *= temp;
 	return rez;
 }
-Vectors Vectors::operator= (const Vectors & temp)
+const Vectors& Vectors::operator= (const Vectors & temp)
 {
 	delete[] arr;
 	s = temp.s;
@@ -88,13 +88,19 @@ Vectors Vectors::operator= (const Vectors & temp)
 		arr[i] = temp.arr[i];
 	return *this;
 }
-double* Vectors::operator[] (int i) const
+const double& Vectors::operator[] (int i)const
+{
+    if ((i < 0) || (i >= s))
+        throw "El";
+    return arr[i];
+}
+double& Vectors::operator[] (int i) 
 {
 	if ((i < 0) || (i >= s))
 		throw "El";
-	return &arr[i];
+	return arr[i];
 }
-double Vectors::Lenght() const
+double Vectors::Lenght()const
 {
 	double rez = 0;
 	for (int i = 0; i < s; i++)
@@ -102,7 +108,7 @@ double Vectors::Lenght() const
 	rez = sqrt(rez);
 	return rez;
 }
-Vectors Vectors::operator+= (const Vectors & temp)
+Vectors& Vectors::operator+= (const Vectors & temp)
 {
 	if (s != temp.s)
 		throw "Size";
@@ -110,7 +116,7 @@ Vectors Vectors::operator+= (const Vectors & temp)
 		arr[i] += temp.arr[i];
 	return *this;
 }
-Vectors Vectors::operator-= (const Vectors & temp)
+Vectors& Vectors::operator-= (const Vectors & temp)
 {
 	if (s != temp.s)
 		throw "Size";
@@ -118,7 +124,7 @@ Vectors Vectors::operator-= (const Vectors & temp)
 		arr[i] -= temp.arr[i];
 	return *this;
 }
-Vectors Vectors::operator*= (double temp)
+Vectors& Vectors::operator*= (double temp)
 {
 	for (int i = 0; i < s; i++)
 		arr[i] *= temp;
@@ -126,8 +132,6 @@ Vectors Vectors::operator*= (double temp)
 }
 void Vectors::PrVec() const
 {
-	if (s == 0)
-		throw "Size";
 	for (int i = 0; i < s; i++)
 		cout << arr[i] << " ";
 	cout << endl;
