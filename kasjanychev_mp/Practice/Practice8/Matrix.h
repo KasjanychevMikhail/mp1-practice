@@ -18,7 +18,7 @@ public:
 	Matrix& operator* (double x);
 
 	double* operator[] (int i) const;
-	Matrix& operator=(const Matrix& mat);
+	const Matrix& operator=(const Matrix& mat);
 	void ScMat();
 	void PrMat();
 };

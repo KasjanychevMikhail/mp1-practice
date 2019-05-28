@@ -88,7 +88,7 @@ double* Matrix::operator[] (int i) const
 	return &(arr[rows * i]);
 }
 
-Matrix& Matrix::operator=(const Matrix& mat)
+const Matrix& Matrix::operator=(const Matrix& mat)
 {
 	delete[] arr;
 	rows = mat.rows;
