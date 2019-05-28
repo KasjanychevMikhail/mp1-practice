@@ -3,17 +3,18 @@
 using namespace std;
 
 template <typename T>
-class Container2
+class Container<T*>
 {
 private:
 	T** arr;
 	int size;
 	int max;
+    void DopPam(int a);
 public:
-	Container2();
-	Container2(int _size);
-	Container2(const Container2& temp);
-	~Container2();
+	Container();
+	Container(int _size);
+	Container(const Container& temp);
+	~Container();
 
 	bool IsFull()const;
 	bool IsEmpty()const;
@@ -21,31 +22,30 @@ public:
 	int Find(T a)const;
 	void Add(T a);
 	void Remove(T a);
-	void DopPam(int a);
-	T* operator[](int i);
+	T& operator[](int i);
+    const T& operator[](int i)const;
 
 	void Print()const;
-	void Fill();
+	void Fill(int _size);
 };
 
 template <typename T>
-Container2<T>::Container2()
+Container<T*>::Container()
 {
 	size = 0;
-	arr = new T*[max];
+    max = 0;
 }
 
 template <typename T>
-Container2<T>::Container2(int _size)
+Container<T*>::Container(int _size)
 {
-	size = _size;
+	max = _size;
+    size = 0;
 	arr = new T*[max];
-	for (int i = 0; i < size; i++)
-		arr[i] = new T;
 }
 
 template <typename T>
-Container2<T>::Container2(const Container2& temp)
+Container<T*>::Container(const Container& temp)
 {
 	size = temp.size;
 	max = temp.max;
@@ -58,7 +58,7 @@ Container2<T>::Container2(const Container2& temp)
 }
 
 template <typename T>
-Container2<T>::~Container2()
+Container<T*>::~Container()
 {
 	for (int i = 0; i < size; i++)
 		delete arr[i];
@@ -68,19 +68,19 @@ Container2<T>::~Container2()
 }
 
 template <typename T>
-bool Container2<T>::IsFull()const
+bool Container<T*>::IsFull()const
 {
 	return (size == max);
 }
 
 template <typename T>
-bool Container2<T>::IsEmpty()const
+bool Container<T*>::IsEmpty()const
 {
 	return (size == 0);
 }
 
 template <typename T>
-int Container2<T>::Find(T a)const
+int Container<T*>::Find(T a)const
 {
 	for (int i = 0; i < size; i++)
 		if (*arr[i] == a)
@@ -89,63 +89,58 @@ int Container2<T>::Find(T a)const
 }
 
 template <typename T>
-void Container2<T>::Add(T a)
+void Container<T*>::Add(T a)
 {
-	if (this->IsFull())
-		throw "Container is full";
+    if (this->IsFull())
+        this->DopPam(1);
 	arr[size] = new T;
-	*arr[size] = a;
-	size++;
+	*arr[size++] = a;
 }
 
 template <typename T>
-void Container2<T>::Remove(T temp)
+void Container<T*>::Remove(T temp)
 {
 	if (this->IsEmpty())
 		throw "Container is empty";
 	int j = Find(temp);
 	if (j == -1)
 		throw "No elem";
-	*arr[j] = *arr[size - 1];
-	delete arr[size - 1];
-	size--;
+    delete arr[j];
+	arr[j] = arr[size - 1];
+	delete arr[--size];
 }
 
 template <typename T>
-void Container2<T>::DopPam(int a)
+void Container<T*>::DopPam(int a)
 {
-	T** temp = new T*[size];
+    max += a;
+	T** temp = new T*[max];
 	for (int i = 0; i < size; i++)
 	{
-		temp[i] = new T;
-		*temp[i] = *arr[i];
-		delete arr[i];
+		temp[i] = arr[i];
 	}
-	delete arr;
-	max += a;
-	arr = new T*[max];
-	for (int i = 0; i < size; i++)
-	{
-		arr[i] = new T;
-		*arr[i] = *temp[i];
-		delete temp[i];
-	}
-	delete temp;
+	arr = temp;		
 }
 
 template <typename T>
-T * Container2<T>::operator[](int i)
+T& Container<T*>::operator[](int i)
 {
 	if ((i < 0) || (i >= size))
 		throw "Out of Range";
-	return arr[i];
+	return *arr[i];
 }
 
 template <typename T>
-void Container2<T>::Print()const
+const T& Container<T*>::operator[](int i)const
 {
-	if (this->IsEmpty())
-		throw "Container is empty";
+    if ((i < 0) || (i >= size))
+        throw "Out of Range";
+    return *arr[i];
+}
+
+template <typename T>
+void Container<T*>::Print()const
+{
 	for (int i = 0; i < size; i++)
 	{
 		cout << *arr[i] << " ";
@@ -154,12 +149,12 @@ void Container2<T>::Print()const
 }
 
 template <typename T>
-void Container2<T>::Fill()
+void Container<T*>::Fill(int _size)
 {
-	if (this->IsEmpty())
-		throw "Container is empty";
-	for (int i = 0; i < size; i++)
+    T a;
+	for (int i = 0; i < _size; i++)
 	{
-		cin >> *arr[i];
+		cin >> a;
+        this->Add(a);
 	}
 }
