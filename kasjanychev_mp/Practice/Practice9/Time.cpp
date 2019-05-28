@@ -26,7 +26,7 @@ void Time::Print() const
 	cout << h << ":" << min;
 }
 
-Time& Time::operator=(const Time& temp)
+const Time& Time::operator=(const Time& temp)
 {
 	if (this == &temp)
 		return *this;

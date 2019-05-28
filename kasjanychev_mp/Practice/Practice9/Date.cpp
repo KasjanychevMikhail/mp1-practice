@@ -36,7 +36,7 @@ bool Date::operator==(const Date dat) const
 		return true;
 	return false;
 }
-Date& Date::operator=(const Date& temp)
+const Date& Date::operator=(const Date& temp)
 {
 	if (this == &temp)
 		return *this;
