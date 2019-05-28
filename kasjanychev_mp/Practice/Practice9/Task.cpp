@@ -11,10 +11,9 @@ Task::Task()
 Task::~Task()
 {
 	des.clear();
-	date.~Date();
 }
 
-Date Task::GetDate()
+Date Task::GetDate()const
 {
 	return date;
 }
@@ -32,13 +31,12 @@ Type1::Type1(string _des, Date dat)
 Type1::~Type1()
 {
 	des.clear();
-	date.~Date();
 }
 void Type1::Print()const
 {
 	cout << des;
 }
-Type1& Type1::operator= (const Type1& temp)
+const Type1& Type1::operator= (const Type1& temp)
 {
 	if (this == &temp)
 		return *this;
@@ -63,8 +61,6 @@ Type2::Type2(string _des, Date dat, Time t, int d)
 Type2::~Type2()
 {
 	des.clear();
-	date.~Date();
-	time.~Time();
 	dur = 0;
 }
 void Type2::Print()const
@@ -72,7 +68,7 @@ void Type2::Print()const
 	time.Print();
 	cout << des << " durations: " << dur;
 }
-Type2& Type2::operator= (const Type2& temp)
+const Type2& Type2::operator= (const Type2& temp)
 {
 	if (this == &temp)
 		return *this;

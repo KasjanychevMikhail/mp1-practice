@@ -13,7 +13,7 @@ public:
 	Task();
 	virtual ~Task();
 	virtual void Print() = 0;
-	Date GetDate();
+	Date GetDate()const;
 };
 
 class Type1 :public Task
@@ -23,7 +23,7 @@ public:
 	Type1(string _des, Date dat);
 	~Type1();
 	void Print()const;
-	Type1& operator= (const Type1& temp);
+	const Type1& operator= (const Type1& temp);
 };
 
 class Type2 :public Task
@@ -36,5 +36,5 @@ public:
 	Type2(string _des, Date dat, Time t, int d);
 	~Type2();
 	void Print()const;
-	Type2& operator= (const Type2& temp);
+	const Type2& operator= (const Type2& temp);
 };
