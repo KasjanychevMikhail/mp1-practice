@@ -6,7 +6,7 @@ void main()
 	int n, l, y = 0;
 	int a[10], b[10], x[10], z[10];
 	int i, m, j;
-	int j, k, z = 0;
+	int j, k, zz = 0;
 	printf("Vvedite dlinu zagadivaemogo chisla");
 	scanf("%d", &n);
 	srand((unsigned int)time(0));
@@ -14,7 +14,7 @@ void main()
 		a[i] = i;
 	for (l = 0; l < n; l++)
 	{
-		i = 9 / RAND_MAX*rand();
+		i = 9 / RAND_MAX * rand();
 		b[l] = a[i];
 		for (i = i; i < 10; i++)
 			a[i] = a[i + 1];
@@ -50,11 +50,11 @@ void main()
 				if ((x[i] == b[j]) && (i != j))
 					k++;
 				if ((x[i] == b[j]) && (i == j))
-					z++;
+					zz++;
 			}
 		}
 		printf("Kol-vo korov=%d", k);
-		printf("Kol-vo bikov=%d", z);
+		printf("Kol-vo bikov=%d", zz);
 	}
 	printf("Chislo ugadano!");
 }
