@@ -35,18 +35,18 @@ void main()
         n1 = 0;
         k = 0;
         printf("Введите число\n");
-	scanf("%d", &x);
-	while (m != 0)
-	{
-		srand((unsigned int)time(0));
-		y = n1 + rand()%(n2-n1+1);
-		printf("%d\n", y);
-		printf("Введите знак (<, > или =)\n");
-		scanf("%*c%c", &z);
-		k++;
-		if (z == '=') m = 0;
-		if (z == '<') n2 = y;
-		if (z == '>') n1 = y;
+	    scanf("%d", &x);
+	    while (m != 0)
+	    {
+		    srand((unsigned int)time(0));
+		    y = n1 + rand()%(n2-n1+1);
+		    printf("%d\n", y);
+		    printf("Введите знак (<, > или =)\n");
+		    scanf("%*c%c", &z);
+		    k++;
+		    if (z == '=') m = 0;
+		    if (z == '<') n2 = y;
+		    if (z == '>') n1 = y;
         }
         printf("Программа угадала ваше число! Число=%d, кол-во попыток=%d", y, k);
     }
