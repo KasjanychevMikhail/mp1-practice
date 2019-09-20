@@ -49,7 +49,7 @@ void ToDoList::Read(char* adr)
 			ss = "";
 
 			start = finish;
-			finish = des.find(".", start + 1); 
+			finish = des.find(".", start + 1);
 			ss = des.substr((start + 1), (finish - start - 1));
 			m = atoi(ss.c_str());
 			ss = "";
@@ -61,7 +61,7 @@ void ToDoList::Read(char* adr)
 			ss = "";
 
 			start = finish;
-			finish = des.find("/0", start); 
+			finish = des.find("/0", start);
 			ss = des.substr((start + 1), (finish - start - 1));
 			des = ss;
 			ss = "";
@@ -94,7 +94,7 @@ void ToDoList::Read(char* adr)
 			ss = "";
 
 			finish = des.find(":");
-			start = des.rfind(" ", finish); 
+			start = des.rfind(" ", finish);
 			ss = des.substr((start + 1), (finish - start - 1));
 			h = atoi(ss.c_str());
 			ss = "";
