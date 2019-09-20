@@ -90,11 +90,11 @@ const Vectors& Vectors::operator= (const Vectors & temp)
 }
 const double& Vectors::operator[] (int i)const
 {
-    if ((i < 0) || (i >= s))
-        throw "El";
-    return arr[i];
+	if ((i < 0) || (i >= s))
+		throw "El";
+	return arr[i];
 }
-double& Vectors::operator[] (int i) 
+double& Vectors::operator[] (int i)
 {
 	if ((i < 0) || (i >= s))
 		throw "El";

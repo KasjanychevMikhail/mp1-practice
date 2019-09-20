@@ -9,7 +9,7 @@ private:
 	T* arr;
 	int size;
 	int max;
-    void DopPam(int a);
+	void DopPam(int a);
 public:
 	Container();
 	Container(int _size);
@@ -23,7 +23,7 @@ public:
 	void Add(T a);
 	void Remove(T a);
 	T& operator[](int i);
-    const T& operator[](int i)const;
+	const T& operator[](int i)const;
 
 	void Print()const;
 	void Fill(int a);
@@ -33,14 +33,14 @@ template <typename T>
 Container<T>::Container()
 {
 	size = 0;
-    max = 0;
+	max = 0;
 }
 
 template <typename T>
 Container<T>::Container(int _size)
 {
 	max = _size;
-    size = 0;
+	size = 0;
 	arr = new T[max];
 }
 
@@ -88,8 +88,8 @@ int Container<T>::Find(T a)const
 template <typename T>
 void Container<T>::Add(T a)
 {
-    if (this->IsFull())
-        this->DopPam(1);
+	if (this->IsFull())
+		this->DopPam(1);
 	arr[size++] = a;
 }
 
@@ -107,11 +107,11 @@ void Container<T>::Remove(T temp)
 template <typename T>
 void Container<T>::DopPam(int a)
 {
-    max += a;
+	max += a;
 	T* temp = new T[max];
 	for (int i = 0; i < size; i++)
 		temp[i] = arr[i];
-    arr = temp;
+	arr = temp;
 }
 
 template <typename T>
@@ -125,9 +125,9 @@ T& Container<T>::operator[](int i)
 template <typename T>
 const T& Container<T>::operator[](int i)const
 {
-    if ((i < 0) || (i >= size))
-        throw "Out of Range";
-    return arr[i];
+	if ((i < 0) || (i >= size))
+		throw "Out of Range";
+	return arr[i];
 }
 
 template <typename T>
@@ -143,10 +143,10 @@ void Container<T>::Print()const
 template <typename T>
 void Container<T>::Fill(int _size)
 {
-    T a;
+	T a;
 	for (int i = 0; i < _size; i++)
 	{
 		cin >> a;
-        this->Add(a);
+		this->Add(a);
 	}
 }

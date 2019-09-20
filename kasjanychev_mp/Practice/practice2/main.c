@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -5,8 +7,10 @@ void main()
 {
 	int n, l, y = 0;
 	int a[10], b[10], x[10], z[10];
-	int i, m, j;
-	int j, k, zz = 0;
+	int i, m;
+	int j = 0;
+	int k = 0;
+	int zz = 0;
 	printf("Vvedite dlinu zagadivaemogo chisla");
 	scanf("%d", &n);
 	srand((unsigned int)time(0));
@@ -19,17 +23,17 @@ void main()
 		for (i = i; i < 10; i++)
 			a[i] = a[i + 1];
 	}
-	while (z != n)
+	while (z[i] != n)
 	{
 		printf("Vvedite predpolozhitelnoe chislo");
 		scanf("%d", &y);
 		for (i = 1; i < n + 1; i++)
 			z[i] = y / i;
-		for (i = 0; i < n; i++) 
+		for (i = 0; i < n; i++)
 		{
-			for (j = 0; j < n; j++) 
+			for (j = 0; j < n; j++)
 			{
-				if (z[i] == z[j]) 
+				if (z[i] == z[j])
 				{
 					printf("Chislo soderzhit povtoryaushiesya cifri");
 					return;

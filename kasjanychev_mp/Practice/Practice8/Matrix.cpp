@@ -107,9 +107,9 @@ void Matrix::ScMat()
 void Matrix::PrMat()
 {
 	for (int i = 0; i < rows * cols; i++)
-	{	
+	{
 		if (i % rows == 0)
-		cout << endl;
+			cout << endl;
 		cout << arr[i] << " ";
 	}
 }

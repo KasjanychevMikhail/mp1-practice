@@ -1,9 +1,11 @@
 #pragma once
 
-typedef struct 
+#define _CRT_SECURE_NO_WARNINGS
+
+typedef struct
 {
-    int a;//размерность вектора
-    double* vec;
+	int a;//размерность вектора
+	double* vec;
 } Vector;
 
 Vector* create(int n);

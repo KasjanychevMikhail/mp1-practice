@@ -18,7 +18,7 @@ public:
 	Vectors operator* (double temp) const;
 	const Vectors& operator= (const Vectors & temp);
 	const double& operator[] (int i) const;
-    double& operator[] (int i);
+	double& operator[] (int i);
 	double Lenght() const;
 	Vectors& operator+= (const Vectors & temp);
 	Vectors& operator-= (const Vectors & temp);

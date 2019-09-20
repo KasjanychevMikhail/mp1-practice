@@ -12,7 +12,7 @@ protected:
 public:
 	Task();
 	virtual ~Task();
-	virtual void Print() = 0;
+	virtual void Print() const = 0;
 	Date GetDate()const;
 };
 
