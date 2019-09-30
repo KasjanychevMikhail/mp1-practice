@@ -38,7 +38,7 @@ void main()
 	bok = h * d * 0.015 * dsp;
 	kr = w * d * 0.015 * dsp;
 	dv = h * w * 0.01 * derevo;
-	pol = (h - 2 * 0.015) / (0.4 + 0.015) * (w - 2 * 0.015) * (d - 0.005) * dsp;
+	pol = floor((h - 2 * 0.015) / (0.4 + 0.015)) * (w - 2 * 0.015) * (d - 0.005) * dsp;
 	m = zs + 2 * bok + 2 * kr + 2 * dv + 4 * pol;
 	printf("Massa shkafa=%lf", m);
 	return;

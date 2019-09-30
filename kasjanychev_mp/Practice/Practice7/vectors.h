@@ -1,5 +1,6 @@
 #pragma once
-
+#include <iostream>
+using namespace std;
 class Vectors
 {
 private:
@@ -23,6 +24,20 @@ public:
 	Vectors& operator+= (const Vectors & temp);
 	Vectors& operator-= (const Vectors & temp);
 	Vectors& operator*= (double temp);
-	void PrVec() const;
-	void ScVec();
+	bool operator== (const Vectors& temp) const;
+	bool operator!= (const Vectors& temp) const;
+	
+	friend istream& operator>> (istream& in, Vectors& temp)
+	{
+		for (int i = 0; i < temp.s; i++)
+			in >> temp.arr[i];
+		return in;
+	}
+
+	friend ostream& operator<< (ostream& out, const Vectors& v)
+	{
+		for (int i = 0; i < v.s; i++)
+			out << v[i] << " ";
+		return out;
+	}
 };

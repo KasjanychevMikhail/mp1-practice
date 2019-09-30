@@ -4,70 +4,53 @@
 using namespace std;
 void main()
 {
-	int n;
-	cout << "Vvedite kol-vo koordinat ";
-	cin >> n;
-	Vectors a = Vectors(n);
+	Vectors v1(3);
+	Vectors v2(3);
+	cin >> v2;
+	Vectors v3(3);
+	cin >> v3;
+	try
+	{
+		v1 = v3 + v2;
+		cout << "v1 = v2 + v1" << endl;
+	}
+	catch (const char* A)
+	{
+		cout << A << endl;
+	}
+	cout << v1 << endl << v2 << endl << v3 << endl;
 
 	try
 	{
-		a.ScVec();
+		v1 = v3 - v2;
+		cout << "v1 = v2 - v1" << endl;
 	}
-	catch (char* er)
+	catch (const char* A)
 	{
-		cout << er;
+		cout << A << endl;
 	}
-	a.PrVec();
+	cout << v1 << endl;
 
-	cout << "Vvedite kol-vo koordinat ";
-	cin >> n;
-	Vectors b = Vectors(n);
+	v2 -= 5;
+	cout << "v2 -= 5" << endl;
+	cout << v2 << endl;
 
-	try
-	{
-		b.ScVec();
-	}
-	catch (char* er)
-	{
-		cout << er;
-	}
-	b.PrVec();
+	v2 += 10;
+	cout << "v2 += 10" << endl;
+	cout << v2 << endl;
 
-	Vectors c;
-	cout << "c = a + b";
-	try
-	{
-		c = a + b;
-	}
-	catch (char* er)
-	{
-		cout << er;
-	}
-	c.PrVec();
-	cout << "c = a - b";
-	try
-	{
-		c = a - b;
-	}
-	catch (char* er)
-	{
-		cout << er;
-	}
-	c.PrVec();
-	cout << "c += 5";
-	c = c + 5;
-	c.PrVec();
-	cout << "c -= 3";
-	c = c - 3;
-	c.PrVec();
-	cout << "c *= 1.5";
-	c *= 1.5;
-	c.PrVec();
+	v2 *= 1.5;
+	cout << "v2 *= 1.5" << endl;
+	cout << v2 << endl;
+
+	v1 = v3 + 1.0;
+	cout << "v1 = v3 + 1.0" << endl;
+	cout << v1 << endl;
 
 	double x;
 	try
 	{
-		x = a * b;
+		x = v2 * v3;
 	}
 	catch (char* er)
 	{
@@ -77,7 +60,7 @@ void main()
 
 	try
 	{
-		x = c.Lenght();
+		x = v2.Lenght();
 	}
 	catch (char* er)
 	{
@@ -87,7 +70,7 @@ void main()
 
 	try
 	{
-		cout << "c[0] = " << c[0];
+		cout << "c[0] = " << v2[0];
 	}
 	catch (char* er)
 	{
@@ -96,8 +79,8 @@ void main()
 
 	try
 	{
-		c[0] = 10;
-		cout << "c[0] = 10 = " << c[0];
+		v2[0] = 10;
+		cout << "c[0] = 10 = " << v2[0];
 	}
 	catch (char* er)
 	{

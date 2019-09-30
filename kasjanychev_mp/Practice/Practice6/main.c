@@ -1,5 +1,4 @@
-#pragma once
-#include "funcs.c"
+#include "funcs.h"
 #include <stdio.h>
 #include <stdlib.h>
 

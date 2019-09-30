@@ -99,17 +99,15 @@ const Matrix& Matrix::operator=(const Matrix& mat)
 	return *this;
 }
 
-void Matrix::ScMat()
+bool Matrix:: operator== (const Matrix& m) const
 {
-	for (int i = 0; i < rows * cols; i++)
-		cin >> arr[i];
-}
-void Matrix::PrMat()
-{
-	for (int i = 0; i < rows * cols; i++)
+	if ((cols != m.cols) || (rows != m.rows)) return false;
+	for (int i = 0; i < (cols * rows); i++)
 	{
-		if (i % rows == 0)
-			cout << endl;
-		cout << arr[i] << " ";
+		if (arr[i] != m.arr[i])
+			return false;
 	}
+	return true;
 }
+
+

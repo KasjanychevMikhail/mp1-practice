@@ -19,7 +19,7 @@ void main() {
 		printf("Okruzhnosti ne peresekayutsya i ne lezhat drug v druge");
 		return;
 	}
-	if (d < sqrt((r1 - r2) * (r1 - r2)))
+	if (d < abs(r1 - r2))
 		printf("Okruzhnosti lezhat drug v druge i ne kasayutsya drug druga");
 	return;
 	if (d == sqrt((r1 - r2) * (r1 - r2))) {

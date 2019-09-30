@@ -130,16 +130,26 @@ Vectors& Vectors::operator*= (double temp)
 		arr[i] *= temp;
 	return *this;
 }
-void Vectors::PrVec() const
+bool Vectors::operator== (const Vectors& temp) const
 {
+
+	if (s != temp.s) return false;
+	int f = 0;
 	for (int i = 0; i < s; i++)
-		cout << arr[i] << " ";
-	cout << endl;
+	{
+		if (arr[i] != temp.arr[i]) f = 1;
+	}
+	if (f == 1) return false;
+	return true;
 }
-void Vectors::ScVec()
+bool Vectors::operator!= (const Vectors& temp) const
 {
-	if (s == 0)
-		throw "Size";
+	if (s != temp.s) return true;
+	int f = 0;
 	for (int i = 0; i < s; i++)
-		cin >> arr[i];
+	{
+		if (arr[i] != temp.arr[i]) f = 1;
+	}
+	if (f == 1) return true;
+	return false;
 }

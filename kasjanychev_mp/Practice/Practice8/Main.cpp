@@ -8,13 +8,9 @@ void main()
 	cout << "Vvedite razmernost";
 	cin >> n >> m;
 	Matrix a = Matrix(n, m);
-	a.ScMat();
-	a.PrMat();
 	cout << "Vvedite razmernost";
 	cin >> n >> m;
 	Matrix b = Matrix(n, m);
-	b.ScMat();
-	b.PrMat();
 	Matrix c;
 
 	cout << "a + b" << endl;
@@ -26,7 +22,6 @@ void main()
 	{
 		cout << er;
 	}
-	c.PrMat();
 
 	cout << "a - b" << endl;
 	try
@@ -37,7 +32,6 @@ void main()
 	{
 		cout << er;
 	}
-	c.PrMat();
 
 	cout << "a * b" << endl;
 	try
@@ -48,19 +42,15 @@ void main()
 	{
 		cout << er;
 	}
-	c.PrMat();
 
 	cout << "a + 5";
 	c = a + 5;
-	c.PrMat();
 
 	cout << "a - 3";
 	c = a - 3;
-	c.PrMat();
 
 	cout << "a * 1.5";
 	c = a * 1.5;
-	c.PrMat();
 
 	try
 	{

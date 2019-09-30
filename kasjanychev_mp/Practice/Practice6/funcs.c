@@ -1,4 +1,3 @@
-#pragma once
 #include "funcs.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -79,7 +78,6 @@ double corner(Vector* v1, Vector* v2)
 		printf("Error");
 		return;
 	}
-	int i;
 	double ug = acos((multi(v1, v2)) / ((length(v1)) * (length(v2))));
 	ug = ug * 180 / 3.1415;
 	return ug;

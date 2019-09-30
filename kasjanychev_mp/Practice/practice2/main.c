@@ -11,54 +11,56 @@ void main()
 	int j = 0;
 	int k = 0;
 	int zz = 0;
-	printf("Vvedite dlinu zagadivaemogo chisla");
-	scanf("%d", &n);
 	srand((unsigned int)time(0));
-	for (i = 0; i < n; i++)
-		a[i] = i;
-	for (l = 0; l < n; l++)
+	do
 	{
-		i = 9 / RAND_MAX * rand();
-		b[l] = a[i];
-		for (i = i; i < 10; i++)
-			a[i] = a[i + 1];
-	}
-	while (z[i] != n)
+		printf("n = ");
+		scanf("%d", &n);
+	} while ((n <= 0) || (n > 10));
+	i = n - 1;
+	m = 9.0 / RAND_MAX * rand() + 1;
+	a[0] = m;
+	b[m] = -1;
+	while (i > 0)
 	{
-		printf("Vvedite predpolozhitelnoe chislo");
-		scanf("%d", &y);
-		for (i = 1; i < n + 1; i++)
-			z[i] = y / i;
-		for (i = 0; i < n; i++)
+		m = 10.0 / RAND_MAX * rand();
+		if (a[m] != -1)
 		{
-			for (j = 0; j < n; j++)
+			b[i] = a[m];
+			b[m] = -1;
+			i--;
+		}
+	}
+
+	do {
+		do
+		{
+			m = 0;
+			printf("number = ");
+			scanf("%d", &l);
+			for (i = (n - 1); i >= 0; i--)
 			{
-				if (z[i] == z[j])
+				x[i] = l % 10;
+				l = l / 10;
+			}
+			for (i = (n - 1); i >= 0; i--)
+			{
+				for (j = (i - 1); j >= 0; j--)
 				{
-					printf("Chislo soderzhit povtoryaushiesya cifri");
-					return;
+					if (x[i] == x[j]) m++;
 				}
 			}
-		}
-		m = 10 * n;
-		for (i = 0; i < n; i++)
+		} while (m != 0);
+		for (i = (n - 1); i >= 0; i--)
 		{
-			x[i] = y / m;
-			y = y % m;
-			m = m / 10;
-		}
-		for (i = 0; i < n; i++)
-		{
-			for (j = 0; j < n; j++)
+			for (j = (n - 1); j >= 0; j--)
 			{
-				if ((x[i] == b[j]) && (i != j))
-					k++;
-				if ((x[i] == b[j]) && (i == j))
-					zz++;
+				if ((a[i] == x[j]) && (i == j)) zz++;
+				if ((a[i] == x[j]) && (j != i)) k++;
 			}
 		}
 		printf("Kol-vo korov=%d", k);
 		printf("Kol-vo bikov=%d", zz);
-	}
+	} while (zz != n);
 	printf("Chislo ugadano!");
 }
