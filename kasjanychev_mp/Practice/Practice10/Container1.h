@@ -25,8 +25,19 @@ public:
 	T& operator[](int i);
 	const T& operator[](int i)const;
 
-	void Print()const;
-	void Fill(int a);
+	friend istream& operator>>(istream&, Container& c)
+	{
+		for (int i = 0; i < c.n; i++)
+			in >> c[i];
+		return in;
+	}
+
+	friend ostream& operator<<(ostream & out, const Container & c)
+	{
+		for (int i = 0; i < c.n; i++)
+			out << c[i] << " ";
+		return out;
+	}
 };
 
 template <typename T>

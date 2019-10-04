@@ -7,97 +7,169 @@
 #include <stdio.h> 
 #define N 5
 
-void skd(int s[], int n)
+void Komanda()
+{
+	printf("\n1 - Scanirovanie \n");
+	printf("2 - Pokazat opisanie \n");
+	printf("3 - Dobavit tovar v check \n");
+	printf("4 - Sforvirovat check \n");
+	printf("5 - Podshitat summu \n");
+}
+void Gener(int a[], int n, double m)
 {
 	int i;
+	srand((unsigned int)time(0));
 	for (i = 0; i < n; i++)
-	{
-		s[i] = rand() % 50 + 1;
-	}
+		a[i] = m / RAND_MAX * rand() + 1;
 }
-
-
-void schit(int n, int *k, char shtrih[][4])
+int Scan(int* num, char** id)
 {
-	int i, kol, f;
-	f = 1;
-	char shtrihkod[5];
-	while (f == 1)
+	char tov[4];
+	int temp, i;
+	do
 	{
-		printf("Для закрытия чека введите 0\n");
-		scanf("%s", &(shtrihkod));
-		if (shtrihkod == 0)
+		printf("Vvedite shtrihkod \n");
+		scanf("%s", &tov);
+		i = 0;
+		while (strncmp(tov, id[i], 4) != 0)
 		{
-			f = 0;
+			i++;
 		}
-		else
-		{
-			while (strlen(shtrihkod) != 0)
-			{
-				printf("Некорректный ввод\n");
-				scanf("%s", &(shtrihkod));
-			}
-			for (i = 0; i < n; i++)
-			{
-				if ((strncmp(shtrihkod, shtrih[i])) == 0)
-				{
-					printf("Введите кол-во\n");
-					scanf("%d", &kol);
-					k[i] += kol;
-				}
-			}
-
-		}
-	}
-}
-
-void chek(char name[][14], char shtrih[][4], int c[], int k[], int sk[], int n)
-{
-	int t = 0, i, j;
-	for (i = 0; i < n; i++)
+		temp = i;
+	} while ((temp < 0) || (temp > N));
+	*num = temp;
+	do
 	{
-		if (k[i] != 0)
-		{
-			for (j = 0; j < 4; j++)
-				printf("штрихкод:%s ", shtrih[i][j]);
-			for (j = 0; j < 16; j++)
-				printf("%s", name[i][j]);
-			printf("ЦЕНА:%dруб - КОЛ-ВО:%d - СТОИМОСТЬ:%dруб - СКИДКА:%d%%\n", c[i], k[i], (k[i] * c[i]), sk[i]);
-		}
-	}
+		printf("Vvedite kol-vo tovara \n");
+		scanf("%d", &temp);
+	} while ((temp < 0) || (temp > 1000));
+	return temp;
 }
-
-int pechat(int c[], int k[], int sk[], int n)
+void Opisanie(char** prod, int pr[], int opis[], int num, char** id)
 {
 	int i;
-	float sos = 0, bez = 0, skid;
-	for (i = 0; i < n; i++)
+	printf("id ");
+	for (i = 0; i < 4; i++)
+		printf("%c", id[num][i]);
+	printf(" %s cena %d opis %d \n", prod[num], pr[num], opis[num]);
+}
+void AddToCheck(int kol[], int num, int q)
+{
+	kol[num] += q;
+	printf("Tovar dobavlen v check\n");
+}
+void Formir(int kol[], char** prod, int pr[], int opis[], char** id)
+{
+	int i, tov;
+	int check = 0, total = 0;
+	for (i = 0; i < N; i++)
 	{
-		if (k[i] != 0)
+		if (kol[i] > 0)
 		{
-			bez += k[i] * c[i];
-			sos += k[i] * c[i] * (1 - (0.01 * sk[i]));
+			Opisanie(prod, pr, opis, i, id);
+			tov = kol[i] * pr[i] * (100 - opis[i]) / 100;
+			printf("kol-vo %d total %d \n", kol[i], tov);
+			check += (pr[i] * kol[i]);
+			total += (pr[i] * kol[i] * (100 - opis[i]) / 100);
 		}
 	}
-	skid = 100 - sos / bez * 100;
-	printf("Итог:%.0fруб   Скидка:%.0f%%   К оплате:%.0fруб \n", bez, skid, sos);
-}
-
-void main() {
-	char shtrih[N][4] = { "0001","0002","0003","0004","0005" };
-	char namy[N][14] = { "Молоко","Колбаса","Сыр","Чай","Конфеты" };
-	int cena[N] = { 200,70,150,25,37 };
-	int kol[N] = { 0 };
-	int skidka[N] = { 0 };
-	int i;
-	setlocale(LC_ALL, "Russian");
-	srand(time(NULL));
-	skd(skidka, N);
-	schit(N, kol, shtrih);
-	for (i = 0; i < N; i++) {
-		printf("%d\n", kol[i]);
+	if (check > 0)
+	{
+		i = (check - total) * 100 / check;
+		printf("bez skidki %d skidka %d total %d \n", check, i, total);
 	}
-	chek(namy, shtrih, cena, kol, skidka, N);
-	pechat(cena, kol, skidka, N);
-
+	else
+		printf("Check pust\n");
+}
+void main()
+{
+	int num = 0, i, q;
+	int kol[N] = { 0 }, pr[N], opis[N];
+	char** prod = (char**)malloc(sizeof(char*) * N);
+	char** id = (char**)malloc(sizeof(char*) * N);
+	for (i = 0; i < N; i++)
+	{
+		switch (i % 10) {
+		case 0:
+			prod[i] = (char*)malloc(sizeof(char) * 4);
+			prod[i] = "Packet";
+			break;
+		case 1:
+			prod[i] = (char*)malloc(sizeof(char) * 4);
+			prod[i] = "Moloko";
+			break;
+		case 2:
+			prod[i] = (char*)malloc(sizeof(char) * 5);
+			prod[i] = "Hleb";
+			break;
+		case 3:
+			prod[i] = (char*)malloc(sizeof(char) * 3);
+			prod[i] = "Jaitso";
+			break;
+		case 4:
+			prod[i] = (char*)malloc(sizeof(char) * 5);
+			prod[i] = "Kolbasa";
+			break;
+		case 5:
+			prod[i] = (char*)malloc(sizeof(char) * 5);
+			prod[i] = "Jabloko";
+			break;
+		case 6:
+			prod[i] = (char*)malloc(sizeof(char) * 4);
+			prod[i] = "Myaso";
+			break;
+		case 7:
+			prod[i] = (char*)malloc(sizeof(char) * 4);
+			prod[i] = "Riba";
+			break;
+		case 8:
+			prod[i] = (char*)malloc(sizeof(char) * 4);
+			prod[i] = "Orehi";
+			break;
+		case 9:
+			prod[i] = (char*)malloc(sizeof(char) * 9);
+			prod[i] = "Shokolad";
+			break;
+		}
+		id[i] = (char*)malloc(sizeof(char) * 4);
+		id[i][3] = i % 10 + '0';
+		id[i][2] = (i / 10) % 10 + '0';
+		id[i][1] = (i / 100) % 10 + '0';
+		id[i][0] = (i / 1000) + '0';
+	}
+	Gener(pr, N, 1000.0);
+	Gener(opis, N, 50.0);
+	q = Scan(&num, id);
+	do
+	{
+		Komanda();
+		scanf("%d", &i);
+		printf("\n");
+		switch (i) {
+		case 1:
+			q = Scan(&num, id);
+			break;
+		case 2:
+			Opisanie(prod, pr, opis, num, id);
+			break;
+		case 3:
+			AddToCheck(kol, num, q);
+			num++;
+			break;
+		case 4:
+			Formir(kol, prod, pr, opis, id);
+			break;
+		case 5:
+			Formir(kol, prod, pr, opis, id);
+			break;
+		default:
+			printf("Nevernaya komanda\n");
+		}
+	} while (i != 5);
+	for (i = 0; i < N; i++)
+		free(prod[i]);
+	free(prod);
+	for (i = 0; i < N; i++)
+		free(id[i]);
+	free(id);
 }
